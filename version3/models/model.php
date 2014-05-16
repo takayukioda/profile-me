@@ -138,6 +138,12 @@ class Model
 		}
 	}
 
+	protected function _decorate (PDOStatement $stmt)
+	{
+		$stmt->setFetchMode (PDO::FETCH_CLASS, get_called_class());
+		return $stmt;
+	}
+
 	public static function instance (array $data = array(), $new = true)
 	{
 		return new static($data, $new);

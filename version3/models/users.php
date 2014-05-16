@@ -33,4 +33,8 @@ class Users extends Model
 
 		$sql = sprintf("INSERT INTO (%s) VALUES (%s);");
 	}
+
+	public function update ()
+	{
+	}
 }
