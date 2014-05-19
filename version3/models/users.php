@@ -30,7 +30,6 @@ class Users extends Model
 	public function create ()
 	{
 		if (! $this->is_new()) return false;
-
 		$sql = sprintf("INSERT INTO (%s) VALUES (%s);");
 	}
 

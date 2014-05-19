@@ -1,7 +1,8 @@
 <?php
+define('DS', DIRECTORY_SEPARATOR);
+define('APPPATH', __DIR__ . DS);
+require_once 'packages/autoloader.php';
 
-require_once 'session.php';
-require_once 'models/model.php';
-require_once 'models/users.php';
+Autoloader::register();
 
 Session::start();
