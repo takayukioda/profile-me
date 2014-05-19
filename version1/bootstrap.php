@@ -1,7 +1,5 @@
 <?php
 
-require_once 'session.php';
-require_once 'models/model.php';
-require_once 'models/users.php';
+require_once 'dbmanager.php';
 
-Session::start();
+session_start();
