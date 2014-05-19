@@ -1,0 +1,11 @@
+@charset "utf-8";
+
+th {
+  text-align: left;
+}
+
+.invalid {
+  color: orange;
+  font-size: 12px;
+  font-weight: normal;
+}
