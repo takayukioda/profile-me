@@ -1,9 +1,9 @@
--- CREATE DATABASE `profileme`;
+CREATE DATABASE `profileme`;
 
--- GRANT ALL PRIVILEGES
--- ON `profileme`.*
--- TO 'profileme'@'localhost'
--- IDENTIFIED BY 'profile';
+GRANT ALL PRIVILEGES
+ON `profileme`.*
+TO 'profileme'@'localhost'
+IDENTIFIED BY 'profile';
 
 use `profileme`;
 
