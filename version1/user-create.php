@@ -38,9 +38,15 @@ $stmt->bindValue(':mail', $mail, PDO::PARAM_STR);
 $stmt->bindValue(':pass', $passwd, PDO::PARAM_STR);
 try {
 	$stmt->execute();
+	$userid = $db->lastInsertId();
 } catch (PDOException $e) {
 	echo $e->getMessage();
-  die();
+	die();
 }
 
-header('Location: /version1/edit.php');
+$_SESSION['auth'] = array(
+	'loggedin' => true,
+	'userid' => $userid,
+);
+
+header("Location: /version1/edit.php?id={$userid}");
