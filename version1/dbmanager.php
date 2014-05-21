@@ -1,11 +1,11 @@
 <?php
 function dbconnect ()
 {
-	$included = include_once('config/database.php');
-	if ($included === false) {
-		$included = include_once('../config/database.php');
+	$config = include('config/database.php');
+	if ($config === false) {
+		$config = include('../config/database.php');
 	}
-	$config = $dbconfig['development'];
+	$config = $config['development'];
 	$pdo_config = array(
 		PDO::ATTR_PERSISTENT => $config['pconnect'],
 		PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
