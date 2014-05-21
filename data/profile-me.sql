@@ -1,9 +1,9 @@
--- CREATE DATABASE `profileme`;
+CREATE DATABASE `profileme`;
 
--- GRANT ALL PRIVILEGES
--- ON `profileme`.*
--- TO 'profileme'@'localhost'
--- IDENTIFIED BY 'profile';
+GRANT ALL PRIVILEGES
+ON `profileme`.*
+TO 'profileme'@'localhost'
+IDENTIFIED BY 'profile';
 
 use `profileme`;
 
@@ -13,7 +13,7 @@ CREATE TABLE `users` (
 	`username` varchar(100) NOT NULL,
 	`mail` varchar(255) NOT NULL,
 	`password` varchar(255) NOT NULL,
-	`self_promotion` text DEFAULT NULL,
+	`profile` text DEFAULT NULL,
 	`created_at` datetime NOT NULL,
 	`updated_at` datetime NOT NULL,
 	PRIMARY KEY (`id`),
@@ -51,3 +51,4 @@ INSERT INTO `profileme`.`services` (`name`, `url`) VALUES
 ('GitHub', 'https://github.com'),
 ('LINE', 'https://line.me'),
 ('About Me', 'https://about.me')
+;

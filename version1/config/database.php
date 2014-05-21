@@ -1,5 +1,5 @@
 <?php
-$dbconfig = array(
+return array(
 	'development' => array(
 		'username' => 'profileme',
 		'hostname' => 'localhost',
