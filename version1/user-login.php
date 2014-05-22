@@ -6,9 +6,11 @@ if (isset($_SESSION['auth']['loggedin'])) {
 	return header('Location: profile.php');
 }
 
-$userid = $_SESSION['auth']['userid'];
-$stmt = $db->prepare("SELECT * FROM `users` WHERE `id` = '?' LIMIT 1;");
-$stmt->execute(array($userid));
+$mail = $_POST['mail'];
+$password = hash('sha256', $_POST['password']);
+
+$stmt = $db->prepare("SELECT * FROM `users` WHERE `mail` = ? AND `password` = ? LIMIT 1;");
+$stmt->execute(array($mail, $password));
 $user = $stmt->fetchObject();
 
 if ($user === false) {
@@ -17,7 +19,7 @@ if ($user === false) {
 
 $user->password = null;
 $_SESSION['auth'] = array(
-	'userid' => $userid,
+	'userid' => $user->id,
 	'user' => $user,
 	'loggedin' => true,
 );
