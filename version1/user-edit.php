@@ -21,12 +21,13 @@ if (! $is_valid) {
 
 $userid = $_SESSION['auth']['userid'];
 try {
-
+	$db->beginTransaction();
 	$stmt = $db->prepare("UPDATE `users` SET `mail` = :mail, `profile` = :profile WHERE `id` = :id");
 	$stmt->bindValue(':mail', $mail, PDO::PARAM_STR);
 	$stmt->bindValue(':profile', $profile, PDO::PARAM_STR);
 	$stmt->bindValue(':id', $userid, PDO::PARAM_INT);
 	$stmt->execute();
+	$db->commit();
 
 } catch (PDOException $e) {
 	$db->rollback();
@@ -40,4 +41,4 @@ $user = $stmt->fetchObject();
 $_SESSION['auth']['user'] = $user;
 
 $_SESSION['update_status'] = '<span class="info-succeed">Updated Successfully</span>';
-return header('Location: settings.php');
+return header('Location: profile.php');
