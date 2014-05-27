@@ -14,8 +14,8 @@ CREATE TABLE `users` (
 	`mail` varchar(255) NOT NULL,
 	`password` varchar(255) NOT NULL,
 	`profile` text DEFAULT NULL,
-	`created_at` datetime NOT NULL,
-	`updated_at` datetime NOT NULL,
+	`created_at` datetime NOT NULL DEFAULT 0,
+	`updated_at` datetime NOT NULL DEFAULT 0,
 	PRIMARY KEY (`id`),
 	UNIQUE KEY (`mail`)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8 ;
@@ -28,8 +28,8 @@ CREATE TABLE `accounts` (
 	`service_userid` bigint DEFAULT NULL,
 	`service_username` varchar(255) NOT NULL,
 	`url` varchar(255) DEFAULT NULL,
-	`created_at` datetime NOT NULL,
-	`updated_at` datetime NOT NULL,
+	`created_at` datetime NOT NULL DEFAULT 0,
+	`updated_at` datetime NOT NULL DEFAULT 0,
 	PRIMARY KEY (`id`),
 	UNIQUE KEY (`user_id`, `service_id`)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8 ;
@@ -39,8 +39,8 @@ CREATE TABLE `services` (
 	`id` int NOT NULL AUTO_INCREMENT,
 	`name` varchar(255) NOT NULL,
 	`url` varchar (255) NOT NULL,
-	`created_at` datetime NOT NULL,
-	`updated_at` datetime NOT NULL,
+	`created_at` datetime NOT NULL DEFAULT 0,
+	`updated_at` datetime NOT NULL DEFAULT 0,
 	PRIMARY KEY (`id`),
 	UNIQUE KEY (`name`)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8 ;
