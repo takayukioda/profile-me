@@ -18,7 +18,7 @@ if ($execute_result === false) {
 }
 
 $user = mysqli_fetch_assoc($execute_result);
-$user->password = null;
+$user['password'] = null;
 
 $_SESSION['auth'] = array(
 	'userid' => $user->id,

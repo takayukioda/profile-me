@@ -4,6 +4,8 @@ $database_connection = get_connection_to_database();
 
 // there_are_no_errors が true であれば問題無し。false であればエラー発生
 $there_are_no_errors = true;
+
+// 以下の "if (empty" で始まる3つのブロックは必須項目が空でないかの判定
 if (empty($_POST['username'])) {
 	// usernameは必須項目なので、空の場合はエラーメッセージを保存
 	$_SESSION['error']['username'] = "User name is empty";
@@ -30,7 +32,8 @@ $password = hash('sha256', $_POST['password']);
 $query_to_ask_whether_same_mailaddress_exists = sprintf("SELECT * FROM `users` WHERE `mail` = '%s';", $mail);
 $result = mysqli_query($database_connection, $query_to_ask_whether_same_mailaddress_exists);
 if (mysqli_num_rows($result) > 0) {
-	// 返ってきたユーザーデータが存在する(1つ以上値が返ってきた) => 同じメールアドレスは登録できないのでエラーを返す
+	// 返ってきたユーザーデータが存在する(1つ以上値が返ってきた)
+	// => 同じメールアドレスは登録できないのでエラーを返す
 	$_SESSION['error']['already'] = 'mail address is already used';
 	$there_are_no_errors = false;
 }
@@ -46,7 +49,8 @@ if ($execute_result === false) {
 	// 関数の結果がfalseの場合は失敗なので強制終了
 	die('Something went wrong during Insertation');
 }
-// 直近のqueryで作られたIDを取得 (AUTO_INCREMENT を持つカラムがあった場合のみ使用可能)
+// 直近のqueryで作られたIDを取得
+// => 今作ったユーザーのIDが取得できる
 $user_id = mysqli_insert_id($database_connection);
 
 $_SESSION['auth'] = array(
