@@ -5,7 +5,7 @@ if (PHP_OS === 'Darwin') {
 	// MacOSXはLinuxとは違う所にあったりするので個別に設定
 	$socket = '/opt/local/var/run/mysql5/mysqld.sock';
 }
-$dbconfig =  array(
+$dbconfig = array(
 	'username' => 'profileme',
 	'hostname' => 'localhost',
 	'password' => 'profile',
@@ -19,9 +19,9 @@ function get_connection_to_database ()
 		$dbconfig['hostname'],
 		$dbconfig['username'],
 		$dbconfig['password'],
-		$dbconfig['database']
+		$dbconfig['database'],
 		$dbconfig['port'],
-		$dbconfig['socket'],
+		$dbconfig['socket']
 	);
 
 	if (! $dblink) {
