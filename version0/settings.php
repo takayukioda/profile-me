@@ -1,15 +1,15 @@
 <?php require_once 'bootstrap.php'; ?>
 <?php require_once 'auth-check.php'; ?>
 <?php
-$userid = $_SESSION['auth']['userid'];
-$db = dbconnect();
-$stmt = $db->prepare("SELECT * FROM `users` WHERE `id` = ? LIMIT 1;");
-$stmt->execute(array($userid));
-$user = $stmt->fetchObject();
-
-if ($user === false) {
+$user_id = $_SESSION['auth']['user_id'];
+$database_connection = get_connection_to_database();
+$query_to_get_all_of_user_information_who_has_same_id_as = sprintf(
+	"SELECT * FROM `users` WHERE `id` = %d LIMIT 1;", $user_id);
+$execute_result = mysqli_query($database_connection, $query_to_update_user_information_who_has_same_id_as);
+if ($execute_result === false) {
 	return header('Location: index.php');
 }
+$user = mysqli_fetch_assoc($execute_result);
 ?>
 <html lang="ja">
 <head>
@@ -32,20 +32,20 @@ if ($user === false) {
 <div class="container">
 <div class="settings-container">
 <h1>Settings</h1>
-<h2><?php echo $user->username;?></h2>
+<h2><?php echo $user['username'];?></h2>
 <form action="user-edit.php" method="post" enctype="multipart/form-data">
 <?php if (isset($_SESSION['update_status'])) echo $_SESSION['update_status']; ?>
 	<div style="display:block">
 	<span class="label">nickname</span>
-	<?php echo $user->username;?>
+	<?php echo $user['username'];?>
 	</div>
 	<div class="form-block">
 	<label for="form-mail">Email Address</label>
-	<input type="email" name="mail" id="form-mail" value="<?php echo $user->mail;?>"/>
+	<input type="email" name="mail" id="form-mail" value="<?php echo $user['mail'];?>"/>
 	</div>
 	<div class="form-block">
 	<label for="form-profile">Profile</label>
-	<textarea name="profile" id="form-profile" cols="50" rows="5"><?php echo $user->profile;?></textarea>
+	<textarea name="profile" id="form-profile" cols="50" rows="5"><?php echo $user['profile'];?></textarea>
 	</div>
 	<input type="submit" value="join">
 </form>

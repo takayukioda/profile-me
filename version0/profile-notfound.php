@@ -1,5 +1,4 @@
 <?php require_once 'bootstrap.php'; ?>
-<?php require_once 'auth-check.php'; ?>
 <html lang="ja">
 <head>
 <meta charset="utf-8" />

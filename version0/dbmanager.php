@@ -1,20 +1,20 @@
 <?php
-// socketはデフォルトは空
-$socket = '';
-if (PHP_OS === 'Darwin') {
-	// MacOSXはLinuxとは違う所にあったりするので個別に設定
-	$socket = '/opt/local/var/run/mysql5/mysqld.sock';
-}
-$dbconfig = array(
-	'username' => 'profileme',
-	'hostname' => 'localhost',
-	'password' => 'profile',
-	'database' => 'profileme',
-	'socket' => $socket,
-	'port' => 3306,
-);
 function get_connection_to_database ()
 {
+	// socketはデフォルトは空
+	$socket = '';
+	if (PHP_OS === 'Darwin') {
+		// MacOSXはLinuxとは違う所にあったりするので個別に設定
+		$socket = '/opt/local/var/run/mysql5/mysqld.sock';
+	}
+	$dbconfig = array(
+		'username' => 'profileme',
+		'hostname' => 'localhost',
+		'password' => 'profile',
+		'database' => 'profileme',
+		'socket' => $socket,
+		'port' => 3306,
+	);
 	$dblink = mysqli_connect(
 		$dbconfig['hostname'],
 		$dbconfig['username'],
