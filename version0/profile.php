@@ -15,7 +15,6 @@ if ($execute_result === false) {
 	return header('Location: profile-notfound.php');
 }
 $user = mysqli_fetch_assoc($execute_result);
-
 ?>
 <html lang="ja">
 <head>
@@ -37,7 +36,7 @@ $user = mysqli_fetch_assoc($execute_result);
 </header>
 <div class="container">
 <div class="profile-container clearfix">
-<h1><?php echo $user['username;']?></h1>
+<h1><?php echo $user['username'];?></h1>
 <div class="social-container clearfix">
 <ul>
 <li>Facebook(dummy)</li>
