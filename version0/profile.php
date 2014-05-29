@@ -10,7 +10,7 @@ if ($user_id === null) return header('Location: index.php');
 $database_connection = get_connection_to_database();
 $query_to_get_all_of_user_information_who_has_same_id_as = sprintf(
 	"SELECT * FROM `users` WHERE `id` = %d LIMIT 1;", $user_id);
-$execute_result = mysqli_query($database_connection, $query_to_update_user_information_who_has_same_id_as);
+$execute_result = mysqli_query($database_connection, $query_to_get_all_of_user_information_who_has_same_id_as);
 if ($execute_result === false) {
 	return header('Location: profile-notfound.php');
 }
@@ -40,9 +40,9 @@ $user = mysqli_fetch_assoc($execute_result);
 <h1><?php echo $user['username;']?></h1>
 <div class="social-container clearfix">
 <ul>
-<li>Facebook</li>
-<li>Twitter</li>
-<li>GitHub</li>
+<li>Facebook(dummy)</li>
+<li>Twitter(dummy)</li>
+<li>GitHub(dummy)</li>
 </ul>
 </div><!-- .social-container -->
 <div class="profile-text">
