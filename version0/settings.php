@@ -1,16 +1,6 @@
 <?php require_once 'bootstrap.php'; ?>
 <?php require_once 'auth-check.php'; ?>
-<?php
-$user_id = $_SESSION['auth']['user_id'];
-$database_connection = get_connection_to_database();
-$query_to_get_all_of_user_information_who_has_same_id_as = sprintf(
-	"SELECT * FROM `users` WHERE `id` = %d LIMIT 1;", $user_id);
-$execute_result = mysqli_query($database_connection, $query_to_get_all_of_user_information_who_has_same_id_as);
-if ($execute_result === false) {
-	return header('Location: index.php');
-}
-$user = mysqli_fetch_assoc($execute_result);
-?>
+<?php $user = $_SESSION['auth']['user']; ?>
 <html lang="ja">
 <head>
 <meta charset="utf-8" />
@@ -47,7 +37,7 @@ $user = mysqli_fetch_assoc($execute_result);
 	<label for="form-profile">Profile</label>
 	<textarea name="profile" id="form-profile" cols="50" rows="5"><?php echo $user['profile'];?></textarea>
 	</div>
-	<input type="submit" value="join">
+	<input type="submit" value="Update">
 </form>
 </div><!-- .settings-container -->
 </div><!-- .container -->
