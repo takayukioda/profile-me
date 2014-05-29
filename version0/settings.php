@@ -5,7 +5,7 @@ $user_id = $_SESSION['auth']['user_id'];
 $database_connection = get_connection_to_database();
 $query_to_get_all_of_user_information_who_has_same_id_as = sprintf(
 	"SELECT * FROM `users` WHERE `id` = %d LIMIT 1;", $user_id);
-$execute_result = mysqli_query($database_connection, $query_to_update_user_information_who_has_same_id_as);
+$execute_result = mysqli_query($database_connection, $query_to_get_all_of_user_information_who_has_same_id_as);
 if ($execute_result === false) {
 	return header('Location: index.php');
 }

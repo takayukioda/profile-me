@@ -37,7 +37,6 @@ if (mysqli_num_rows($result) > 0) {
 
 // エラーが発生していたら index.php へ戻る
 if (! $there_are_no_errors) return header('Location: index.php');
-
 $query_to_insert_new_data_to_users_table = sprintf(
 	"INSERT INTO `users` (`username`, `mail`, `password`, `created_at`, `updated_at`) VALUES ('%s', '%s', '%s', NOW(), NOW());",
 	$username, $mail, $password);
