@@ -12,6 +12,8 @@ $query_to_get_all_of_user_information_who_has_same_id_as = sprintf(
 	"SELECT * FROM `users` WHERE `id` = %d LIMIT 1;", $user_id);
 $execute_result = mysqli_query($database_connection, $query_to_get_all_of_user_information_who_has_same_id_as);
 if ($execute_result === false) {
+	// user id から情報が検索できなかった
+	//  => profile not found ページへ飛ばす
 	return header('Location: profile-notfound.php');
 }
 $user = mysqli_fetch_assoc($execute_result);
