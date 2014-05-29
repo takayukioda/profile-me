@@ -1,0 +1,4 @@
+<FilesMatch "^dbmanager">
+	Require all denied
+</FilesMatch>
+
