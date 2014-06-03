@@ -53,9 +53,17 @@ if ($execute_result === false) {
 // => 今作ったユーザーのIDが取得できる
 $user_id = mysqli_insert_id($database_connection);
 
+$query_to_get_user_who_match_the_mail_and_password_combination = sprintf(
+"SELECT * FROM `users` WHERE `mail` = '%s' AND `password` = '%s' LIMIT 1;", $mail, $password);
+$execute_result = mysqli_query($database_connection, $query_to_get_user_who_match_the_mail_and_password_combination);
+$user = mysqli_fetch_assoc($execute_result);
+$user['password'] = null;
+
+
 $_SESSION['auth'] = array(
 	'loggedin' => true,
 	'user_id' => $user_id,
+	'user' => $user,
 );
 
 header("Location: settings.php");
