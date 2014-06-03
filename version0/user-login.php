@@ -21,7 +21,7 @@ $user = mysqli_fetch_assoc($execute_result);
 $user['password'] = null;
 
 $_SESSION['auth'] = array(
-	'userid' => $user->id,
+	'user_id' => $user['id'],
 	'user' => $user,
 	'loggedin' => true,
 );
