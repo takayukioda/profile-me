@@ -29,10 +29,9 @@ $mail = $_POST['mail'];
 $password = hash('sha256', $_POST['password']);
 
 
-$query_to_ask_whether_same_mailaddress_exists = sprintf("SELECT * FROM `users` WHERE `mail` = '%s';", $mail);
-$escaped_query_to_ask_whether_same_mailaddress_exists = mysqli_real_escape_string($database_connection,
-	$query_to_ask_whether_same_mailaddress_exists);
-$result = mysqli_query($database_connection, $escaped_query_to_ask_whether_same_mailaddress_exists);
+$query_to_ask_whether_same_mailaddress_exists = sprintf("SELECT * FROM `users` WHERE `mail` = '%s';",
+	mysqli_real_escape_string($database_connection, $mail));
+$result = mysqli_query($database_connection, $query_to_ask_whether_same_mailaddress_exists);
 if (mysqli_num_rows($result) > 0) {
 	// 返ってきたユーザーデータが存在する(1つ以上値が返ってきた)
 	// => 同じメールアドレスは登録できないのでエラーを返す
@@ -44,10 +43,10 @@ if (mysqli_num_rows($result) > 0) {
 if (! $there_are_no_errors) return header('Location: index.php');
 $query_to_insert_new_data_to_users_table = sprintf(
 	"INSERT INTO `users` (`username`, `mail`, `password`, `created_at`, `updated_at`) VALUES ('%s', '%s', '%s', NOW(), NOW());",
-	$username, $mail, $password);
-$escaped_query_to_insert_new_data_to_users_table = mysqli_real_escape_string($database_connection,
-	$query_to_insert_new_data_to_users_table);
-$execute_result = mysqli_query($database_connection, $escaped_query_to_insert_new_data_to_users_table);
+	mysqli_real_escape_string($database_connection, $username),
+	mysqli_real_escape_string($database_connection, $mail),
+	$password);
+$execute_result = mysqli_query($database_connection, $query_to_insert_new_data_to_users_table);
 if ($execute_result === false) {
 	// 関数の結果がfalseの場合は失敗なので強制終了
 	die('Something went wrong during Insertation');
