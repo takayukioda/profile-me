@@ -56,10 +56,10 @@ if ($execute_result === false) {
 $user_id = mysqli_insert_id($database_connection);
 
 $query_to_get_user_who_match_the_mail_and_password_combination = sprintf(
-	"SELECT * FROM `users` WHERE `mail` = '%s' AND `password` = '%s' LIMIT 1;", $mail, $password);
-$escaped_query_to_get_user_who_match_the_mail_and_password_combination = mysqli_real_escape_string($database_connection,
-	$query_to_get_user_who_match_the_mail_and_password_combination);
-$execute_result = mysqli_query($database_connection, $escaped_query_to_get_user_who_match_the_mail_and_password_combination);
+	"SELECT * FROM `users` WHERE `mail` = '%s' AND `password` = '%s' LIMIT 1;",
+	mysqli_real_escape_string($database_connection, $mail),
+	$password);
+$execute_result = mysqli_query($database_connection, $query_to_get_user_who_match_the_mail_and_password_combination);
 $user = mysqli_fetch_assoc($execute_result);
 $user['password'] = null;
 
