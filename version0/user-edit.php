@@ -21,7 +21,9 @@ $user_id = $_SESSION['auth']['user_id'];
 $query_to_update_user_information_who_has_same_id_as = sprintf(
 	"UPDATE `users` SET `mail` = '%s', `profile` = '%s' WHERE `id` = %d",
 	$mail, $profile, $user_id);
-$execute_result = mysqli_query($database_connection, $query_to_update_user_information_who_has_same_id_as);
+$escaped_query_to_update_user_information_who_has_same_id_as = mysqli_real_escape_string($database_connection,
+$query_to_update_user_information_who_has_same_id_as);
+$execute_result = mysqli_query($database_connection, $escaped_query_to_update_user_information_who_has_same_id_as);
 if ($execute_result === false) {
 	// 関数の結果がfalseの場合は失敗なのでエラーメッセージを作成してsettings.phpへ戻す
 	$_SESSION['update_status'] = '<span class="info-failed">Update Failed</span>';
@@ -31,7 +33,9 @@ if ($execute_result === false) {
 
 $query_to_get_all_of_user_information_who_has_same_id_as = sprintf(
 	"SELECT * FROM `users` WHERE `id` = %d LIMIT 1;", $user_id);
-$execute_result = mysqli_query($database_connection, $query_to_get_all_of_user_information_who_has_same_id_as);
+$escaped_query_to_get_all_of_user_information_who_has_same_id_as = mysqli_real_escape_string($database_connection,
+	$query_to_update_user_information_who_has_same_id_as);
+$execute_result = mysqli_query($database_connection, $escaped_query_to_get_all_of_user_information_who_has_same_id_as);
 if ($execute_result === false) {
 	// アップデートができていれば失敗するはずのない処理なので、エラーを吐いて強制終了
 	die('Oops... Something went wrong!');

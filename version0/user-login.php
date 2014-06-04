@@ -9,9 +9,9 @@ if (isset($_SESSION['auth']['loggedin'])) {
 $mail = $_POST['mail'];
 $password = hash('sha256', $_POST['password']);
 
-$query_to_get_user_who_match_the_mail_and_password_combination = sprintf(
-"SELECT * FROM `users` WHERE `mail` = '%s' AND `password` = '%s' LIMIT 1;", $mail, $password);
-$execute_result = mysqli_query($database_connection, $query_to_get_user_who_match_the_mail_and_password_combination);
+$escaped_query_to_get_user_who_match_the_mail_and_password_combination = mysqli_real_escape_string($database_connection,
+	$query_to_get_user_who_match_the_mail_and_password_combination);
+$execute_result = mysqli_query($database_connection, $escaped_query_to_get_user_who_match_the_mail_and_password_combination);
 
 if ($execute_result === false) {
 	return header('Location: index.php');
