@@ -20,6 +20,10 @@ if ($execute_result === false) {
 }
 
 $user = mysqli_fetch_assoc($execute_result);
+if (empty($user)) {
+	return header('Location: index.php');
+}
+
 $user['password'] = null;
 
 $_SESSION['auth'] = array(
